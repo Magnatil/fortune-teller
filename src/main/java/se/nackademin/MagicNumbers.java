@@ -17,7 +17,7 @@ public class MagicNumbers {
     
     public int calculateA() {
         //"A" is the variable containing the number that will represent 
-        //Adjective(<A>). this method wil return the variable "A".
+        //Adjective(<A>). this method will return the variable "A".
         int A = 1; //Set to 1 at initilization so we do not need to add during the space calculation.
         String nameA = this.name;
         
@@ -44,13 +44,54 @@ public class MagicNumbers {
     }
 
     public int calculateB() {
-        //TODO: calculate B
-        return 0;
+        //"B" is the variable containing the number that will represent 
+        //Verb(<B>). this method will return the variable "B".
+        int B = 0;
+        
+        B = B + this.income + this.location.length();
+        
+        //Subtract 7 in a while loop from B until it reaches below 10. Do not use "Do While"
+        //As that would subtract once even if it already is below 10 for some reason.
+        
+        while (B < 10) {
+        B = B - 7;    
+        }
+        //Check if B landed below 0, then select the closest verb, which is 0.
+        //Otherwise there would be errors.
+        if (B < 0) {B = 0;} 
+        
+        return B;
     }
 
     public int calculateC() {
-        //TODO: calculate C
-        return 0;
+        //Get our "Sustantive" (<C>) for the fortune teller.
+        
+        //Call the methods for calculating A and B so we get the values.
+        int A = this.calculateA();
+        int B = this.calculateB();
+        //Initiliazise the C variable, no point in assigning it a value yet.
+        int C;
+        //Grab the customer height.
+        int customerheight = this.height;
+        
+        //Add A and B together to C.
+        C = A + B;
+        //Subtract customer height from C.
+        C = C - customerheight;
+        
+        //If C is below 0.
+        if (C < 0) {
+            
+            while (C < 0) {
+                C = C + 10;
+            }
+            
+        }
+        //If C goes above 9, select 9. This will prevent the software dfrom being unable to display anything.
+        //Should the while loop end up with C being above 9.
+        if (C > 9) {C = 9;}
+        
+        return C;
     }
 
     public int calculateD() {
