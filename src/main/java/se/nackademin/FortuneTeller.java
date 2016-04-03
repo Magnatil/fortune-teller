@@ -1,5 +1,5 @@
 package se.nackademin;
-//Random comment, just for first commit.
+//Random comment, just for first commit.46346346
 import se.nackademin.gui.FortuneTellerGui;
 
 public class FortuneTeller {
