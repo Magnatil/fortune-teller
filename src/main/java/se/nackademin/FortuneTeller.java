@@ -5,6 +5,7 @@ import se.nackademin.gui.FortuneTellerGui;
 public class FortuneTeller {
     MagicNumbers magicNumbers;
     FortuneTellerGui fortuneTellerGui;
+    Translator translator;
 
     /*
      * Returns a fortune based on name, income, location, age and height
@@ -28,6 +29,7 @@ public class FortuneTeller {
     FortuneTeller() {
         fortuneTellerGui = new FortuneTellerGui(this);
         magicNumbers = new MagicNumbers();
+        translator = new Translator();
 
     }
 
