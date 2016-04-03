@@ -95,13 +95,56 @@ public class MagicNumbers {
     }
 
     public int calculateD() {
-        //TODO: calculate D
-        return 0;
+        int A = this.calculateA();
+        int D = 0;
+        
+        if (A > 5) {
+            D = A + this.calculateB();
+        }
+        
+        if (A < 5 || A == 5) {
+            D = A + this.calculateC();
+        }
+        
+        D = D - this.income;
+        
+        //If C is below 0.
+        if (D < 0) {
+            
+            while (D < 0) {
+                D = D + 10;
+            }
+            
+        }
+        //If C goes above 9, select 9. This will prevent the software dfrom being unable to display anything.
+        //Should the while loop end up with C being above 9.
+        if (D > 9) {D = 9;}
+        
+        return D;
     }
 
     public int calculateE() {
-        //TODO: calculate E
-        return 0;
+       double sum = 0;
+       
+       sum = this.age;
+       sum = sum * this.income;
+       sum = sum * this.income;
+       sum = sum * this.height;
+       
+       sum = Math.sqrt(sum);
+       
+       if (sum > 10) {
+           
+           while (sum > 10) {
+               sum = sum / 2;
+           }
+       }
+       
+       sum = Math.round(sum);
+       
+       int E = (int) sum;
+       
+        return E;
     }
 
     public void setName(String name) {
