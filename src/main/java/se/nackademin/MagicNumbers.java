@@ -20,20 +20,20 @@ public class MagicNumbers {
         //Adjective(<A>). this method will return the variable "A".
         int A = 1; //Set to 1 at initilization so we do not need to add during the space calculation.
         String nameA = this.name;
-        
+        int spaces;
         
         //Length of name - name string with no spaces, the difference
         //in Length between the original string and modified string is the number
         //of spaces encountered.
-        A += nameA.length() - nameA.replaceAll(" ", "").length();
-        
+        spaces = nameA.length() - nameA.replaceAll(" ", "").length();
+        A = A + spaces;
         //Add age to the A variable.
         A = A + this.age;
         
         //Subtract 7 in a while loop from A until it reaches below 10. Do not use "Do While"
         //As that would subtract once even if it already is below 10 for some reason.
         
-        while (A < 10) {
+        while (A > 10 || A == 10) {
         A = A - 7;    
         }
         //Check if A landed below 0, then select the closest adjective, which is 0.
@@ -48,12 +48,14 @@ public class MagicNumbers {
         //Verb(<B>). this method will return the variable "B".
         int B = 0;
         
-        B = B + this.income + this.location.length();
+        B = B + this.location.length();
+        B = B + this.income;
+        
         
         //Subtract 7 in a while loop from B until it reaches below 10. Do not use "Do While"
         //As that would subtract once even if it already is below 10 for some reason.
         
-        while (B < 10) {
+        while (B > 10 || B == 10) {
         B = B - 7;    
         }
         //Check if B landed below 0, then select the closest verb, which is 0.
