@@ -1,5 +1,9 @@
 package se.nackademin;
 //Random comment, just for first commit.46346346
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import se.nackademin.gui.FortuneTellerGui;
 
 public class FortuneTeller {
@@ -18,8 +22,32 @@ public class FortuneTeller {
      *
      */
     public String calculate() {
-        //TODO: Implement
-        return "Not implemented!";
+        int A = this.magicNumbers.calculateA();
+        int B = this.magicNumbers.calculateB();
+        int C = this.magicNumbers.calculateC();
+        int D = this.magicNumbers.calculateD();
+        int E = this.magicNumbers.calculateE();
+        
+        this.translator.setAdjektivA(A);
+        this.translator.setVerbB(B);
+        this.translator.setSubstantivC(C);
+        this.translator.setVerbD(D);
+        this.translator.setAdjektivE(E);
+        
+        String[] words;
+        words = new String[5];
+        
+        try {
+            words = this.translator.getWords();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FortuneTeller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        
+        
+        return "Din framtid är "+ words[0] +". Du borde sluta "+ words[1] +". Vi ser att du snart kommer att skaffa "+ words[2] +". Snart kommer du vilja "+ words[3] +", men då är det viktigt att du är "+ words[4] +".";
     }
 
     public static void main(String[] args) {
@@ -30,6 +58,11 @@ public class FortuneTeller {
         fortuneTellerGui = new FortuneTellerGui(this);
         magicNumbers = new MagicNumbers();
         translator = new Translator();
+        
+       
+          
+        
+     
 
     }
 

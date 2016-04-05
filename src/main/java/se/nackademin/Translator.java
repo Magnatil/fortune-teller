@@ -6,8 +6,13 @@
 package se.nackademin;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,7 +25,8 @@ public class Translator {
     private int verbD;
     private int adjektivE;
     
-    private String[][] Ordlista;
+  
+    
     
     //Ordlistan is a two dimensional array that contains the words we want to use, and which type.
     /**
@@ -44,13 +50,93 @@ public class Translator {
      * @return String
      */
     
-//    public String[] getWords() {
-//        String[] word;
-//        
-//        
-//        
-//        return "Nothing";
-//    }
+    public String[] getWords() throws FileNotFoundException {
+        String[] word;
+        word = new String[5];
+        
+        int i = 0;
+      
+        String[][] Ordlista = new String[11][3];
+      
+      
+      FileInputStream fis = new FileInputStream("data/adjektiv");
+ 
+	//Construct BufferedReader from InputStreamReader
+	BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+ 
+	String line = null;
+        try {
+            while ((line = br.readLine()) != null) {
+                
+                Ordlista[i][0] = line;
+                i++;
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Translator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ 
+        try {
+            br.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Translator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        i = 0;
+        //============================================================================
+        FileInputStream fis2 = new FileInputStream("data/substantiv");
+ 
+	//Construct BufferedReader from InputStreamReader
+	BufferedReader br2 = new BufferedReader(new InputStreamReader(fis2));
+ 
+	String line2 = null;
+        try {
+            while ((line2 = br2.readLine()) != null) {
+                
+                Ordlista[i][1] = line2;
+                i++;
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Translator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ 
+        try {
+            br2.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Translator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        i = 0;
+        //==============================================================================
+        FileInputStream fis3 = new FileInputStream("data/verb");
+ 
+	//Construct BufferedReader from InputStreamReader
+	BufferedReader br3 = new BufferedReader(new InputStreamReader(fis3));
+ 
+	String line3 = null;
+        try {
+            while ((line3 = br3.readLine()) != null) {
+                
+                Ordlista[i][2] = line3;
+                i++;
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Translator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ 
+        try {
+            br3.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Translator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //============================================================================
+        word[0] = Ordlista[this.adjektivA][0];
+        word[1] = Ordlista[this.verbB][2];
+        word[2] = Ordlista[this.substantivC][1];
+        word[3] = Ordlista[this.verbD][2];
+        word[4] = Ordlista[this.adjektivE][0];
+        
+        
+        return word;
+   }
     
     //Setters for this class:
 
@@ -78,53 +164,10 @@ public class Translator {
         this.adjektivE = number;
     }
     
-    //Fill the Ordlista:
+
+      
+                
     
-    public void setOrdlista() throws IOException {
-        
-        FileReader fileReader = new FileReader("data/adjektiv");  
-        int i = 0;
-        try (BufferedReader bufferedReader = new BufferedReader(fileReader)) {
-            String line = null;
-            
-            while ((line = bufferedReader.readLine()) != null)
-            {
-                this.Ordlista[i][0] = line;
-                i++;
-            }
-            
-            bufferedReader.close();
-        }
-        
-        
-        
-        FileReader fileReader2 = new FileReader("data/substantiv");  
-        i = 0;
-        try (BufferedReader bufferedReader2 = new BufferedReader(fileReader2)) {
-            String line = null;
-            
-            while ((line = bufferedReader2.readLine()) != null)
-            {
-                this.Ordlista[i][1] = line;
-                i++;
-            }
-            bufferedReader2.close();
-        }
-        
-         FileReader fileReader3 = new FileReader("data/verb");  
-        i = 0;
-        try (BufferedReader bufferedReader3 = new BufferedReader(fileReader3)) {
-            String line = null;
-            
-            while ((line = bufferedReader3.readLine()) != null)
-            {
-                this.Ordlista[i][2] = line;
-                i++;
-            }
-            bufferedReader3.close();
-        }
-        
-    }
     
     
     //Committing.
